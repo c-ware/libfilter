@@ -1,0 +1,57 @@
+.TH "LIBFILTER_FILTER_MATCH" "cware" "September 17, 2022" "" "C-Ware Manuals"
+.br
+.SH NAME
+.br
+LIBFILTER_FILTER_MATCH - filter the input array against a string
+.br
+.SH SYNOPSIS
+.br
+\fB#define LIBFILTER_FILTER_MATCH(\fR\fIfilter\fR\fB,\fR \fIstring\fR\fB,\fR \fIoutput_length\fR\fB);\fR
+.br
+.SH DESCRIPTION
+.br
+For each input array element, if it passes the filter, add it to
+.br
+the output array. The length of the final output array is known
+.br
+using the \fIoutput_length\fR parameter, which should be a variable
+.br
+that can hold a number.
+.br
+
+.br
+
+.br
+When the following conditions are met, this will produce  an error message to stderr, and abort the program.
+.br
+    - filter is NULL
+.br
+    - string is NULL
+.br
+    - filter->input is NULL
+.br
+    - filter->output is NULL
+.br
+    - filter->filter_rule is NULL
+.br
+    - filter->length is negative
+.br
+
+.br
+\fIfilter\fR will be pointer to the filter to use
+.br
+\fIstring\fR will be the string to filter the contents by
+.br
+\fIoutput_length\fR will be the variable to hold the length of the final filter
+.br
+.SH RETURN VALUE
+.br
+This macro will not evaluate to any final value, although it
+.br
+will write the final length of the output array to the variable
+.br
+held in \fIoutput_length\fR.
+.br
+.SH SEE ALSO
+.br
+libfilter(cware), LIBFILTER_FILTER_SET_INPUT(cware), LIBFILTER_FILTER_SET_OUTPUT(cware), LIBFILTER_FILTER_SET_RULE(cware)

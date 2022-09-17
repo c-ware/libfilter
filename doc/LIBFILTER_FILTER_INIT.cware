@@ -1,0 +1,39 @@
+.TH "LIBFILTER_FILTER_INIT" "cware" "September 17, 2022" "" "C-Ware Manuals"
+.br
+.SH NAME
+.br
+LIBFILTER_FILTER_INIT - initialize a new filter
+.br
+.SH SYNOPSIS
+.br
+#include "libfilter/libfilter.h"
+.br
+
+.br
+\fB#define LIBFILTER_FILTER_INIT(\fR\fIfilter\fR\fB);\fR
+.br
+.SH DESCRIPTION
+.br
+This macro function will initialize the required fields of a filter
+.br
+with their default values. Note, that this macro does \fBnot\fR make the filter
+.br
+usable. Rather, it essentially just zeros out the required fields.
+.br
+
+.br
+
+.br
+\fIfilter\fR will be a pointer to the filter to initialize
+.br
+.SH RETURN VALUE
+.br
+This macro function will 'return' (first line will evaluate to) the
+.br
+dereferenced pointer, to allow syntax like initializing on the same
+.br
+line as the declaration.
+.br
+.SH SEE ALSO
+.br
+libfilter(cware)

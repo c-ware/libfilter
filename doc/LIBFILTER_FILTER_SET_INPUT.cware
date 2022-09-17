@@ -1,0 +1,43 @@
+.TH "LIBFILTER_FILTER_SET_INPUT" "cware" "September 17, 2022" "" "C-Ware Manuals"
+.br
+.SH NAME
+.br
+LIBFILTER_FILTER_SET_INPUT - set the input array to filter
+.br
+.SH SYNOPSIS
+.br
+#include "libfilter/libfilter.h"
+.br
+
+.br
+\fB#define LIBFILTER_FILTER_SET_INPUT(\fR\fIfilter\fR\fB,\fR \fIarray\fR\fB,\fR \fIarray_length\fR\fB);\fR
+.br
+.SH DESCRIPTION
+.br
+Set the array to use as input to filter, along with the  length
+.br
+of the array.
+.br
+
+.br
+
+.br
+When the following conditions are met, this will produce  an error message to stderr, and abort the program.
+.br
+    - filter is NULL
+.br
+    - array is NULL
+.br
+    - array_length is negative
+.br
+
+.br
+\fIfilter\fR will be pointer to the filter to use
+.br
+\fIarray\fR will be the array to use as a filter
+.br
+\fIarray_length\fR will be the length of the input array
+.br
+.SH SEE ALSO
+.br
+libfilter(cware)

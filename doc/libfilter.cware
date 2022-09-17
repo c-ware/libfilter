@@ -1,0 +1,70 @@
+.TH "libfilter" "cware" "September 17, 2022" "" "C-Ware Manuals"
+.br
+.SH NAME
+.br
+libfilter - filter arbitrary objects with a string
+.br
+.SH SYNOPSIS
+.br
+\fB#define LIBFILTER_FILTER_DECLARE(\fR\fIname\fR\fB,\fR \fItype\fR\fB);\fR
+.br
+\fB#define LIBFILTER_FILTER_INIT(\fR\fIfilter\fR\fB);\fR
+.br
+\fB#define LIBFILTER_FILTER_SET_RULE(\fR\fIfilter\fR\fB,\fR \fIrule\fR\fB);\fR
+.br
+\fB#define LIBFILTER_FILTER_SET_INPUT(\fR\fIfilter\fR\fB,\fR \fIarray\fR\fB,\fR \fIarray_length\fR\fB);\fR
+.br
+\fB#define LIBFILTER_FILTER_SET_OUTPUT(\fR\fIfilter\fR\fB,\fR \fIarray\fR\fB);\fR
+.br
+\fB#define LIBFILTER_FILTER_MATCH(\fR\fIfilter\fR\fB,\fR \fIstring\fR\fB,\fR \fIoutput_length\fR\fB);\fR
+.br
+.SH DESCRIPTION
+.br
+A macro-based and thus type safe way to handle the filtering of arbitrary
+.br
+arrays of objects based off of an input string. A possible use would be for
+.br
+an interactive filter program, which might accept data from the stdin.
+.br
+
+.br
+The way that objects are filtered is completely customizable, using a filter
+.br
+rule system to implement custom ways to determine whether an object should
+.br
+pass through the filter. For documentation on the individual operations
+.br
+as seen in the SYNOPSIS, see the manuals described in the below table.
+.br
+
+.br
+.TS
+tab(;);
+l l l
+_ _ _
+l l l
+.
+Manual;Description
+LIBFILTER_FILTER_INIT(cware);initialize a filter
+LIBFILTER_FILTER_MATCH(cware);match the input against a string
+LIBFILTER_FILTER_DECLARE(cware);declare a new filter
+LIBFILTER_FILTER_SET_RULE(cware);set the filter rule
+LIBFILTER_FILTER_SET_INPUT(cware);set the input array
+LIBFILTER_FILTER_SET_OUTPUT(cware);set the output array
+.TE
+.SH EXAMPLES
+.br
+For examples of how to use libfilter, please see the below manual page(s).
+.br
+.TS
+tab(;);
+l l l
+_ _ _
+l l l
+.
+Manual;Description
+libfilter-example-strings;an example on filtering strings
+.TE
+.SH SEE ALSO
+.br
+cware(cware)

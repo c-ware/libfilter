@@ -1,0 +1,35 @@
+.TH "LIBFILTER_FILTER_DECLARE" "cware" "September 17, 2022" "" "C-Ware Manuals"
+.br
+.SH NAME
+.br
+LIBFILTER_FILTER_DECLARE - declare a new filter structure
+.br
+.SH SYNOPSIS
+.br
+#include "libfilter/libfilter.h"
+.br
+
+.br
+\fB#define LIBFILTER_FILTER_DECLARE(\fR\fIname\fR\fB,\fR \fItype\fR\fB);\fR
+.br
+.SH DESCRIPTION
+.br
+This macro will generate a new basic filter object with a given
+.br
+name, and the type of object to filter. It is recommended to use
+.br
+this macro, as opposed to declaring it yourself, as the structure
+.br
+of the filter may change.
+.br
+
+.br
+
+.br
+\fIname\fR will be the name of the structure
+.br
+\fItype\fR will be the type of object to filter
+.br
+.SH SEE ALSO
+.br
+libfilter(cware)

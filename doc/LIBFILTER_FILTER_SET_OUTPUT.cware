@@ -1,0 +1,45 @@
+.TH "LIBFILTER_FILTER_SET_OUTPUT" "cware" "September 17, 2022" "" "C-Ware Manuals"
+.br
+.SH NAME
+.br
+LIBFILTER_FILTER_SET_OUTPUT - set the output array for the filter
+.br
+.SH SYNOPSIS
+.br
+#include "libfilter/libfilter.h"
+.br
+
+.br
+\fB#define LIBFILTER_FILTER_SET_OUTPUT(\fR\fIfilter\fR\fB,\fR \fIarray\fR\fB);\fR
+.br
+.SH DESCRIPTION
+.br
+Set the array to use to store the filtered items. Assumes the length
+.br
+of the input array, and such, should be called \fBafter\fR the input
+.br
+array is provided.
+.br
+
+.br
+
+.br
+When the following conditions are met, this will produce  an error message to stderr, and abort the program.
+.br
+    - filter is NULL
+.br
+    - array is NULL
+.br
+    - filter->input is NULL
+.br
+    - filter->length is negative
+.br
+
+.br
+\fIfilter\fR will be pointer to the filter to use
+.br
+\fIarray\fR will be the array to use as output
+.br
+.SH SEE ALSO
+.br
+libfilter(cware)

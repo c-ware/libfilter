@@ -1,0 +1,200 @@
+.TH "libfilter-example-strings" "cware" "September 17, 2022" "" "C-Ware Manuals"
+.br
+.SH NAME
+.br
+libfilter-example-strings - an example of how to filter strings
+.br
+.SH DESCRIPTION
+.br
+This manual describes an example of how to filter an array of strings
+.br
+by reading a character from stdin, filtering, and repeating the filtering
+.br
+until there is only one item. Characters can be deleted by pressing backspace
+.br
+and then enter.
+.br
+.SH EXAMPLES
+.br
+#include "../src/libfilter.h"
+.br
+
+.br
+#define STRING_BUFFER_SIZE  32
+.br
+
+.br
+// Declare a new filter
+.br
+LIBFILTER_FILTER_DECLARE(StringFilter, char *);
+.br
+
+.br
+// Filter strings based off whether or not "filter" is
+.br
+// present in the string
+.br
+int filter_string(char *string, const char *filter) {
+.br
+    if(strstr(string, filter) == NULL)
+.br
+        return 0;
+.br
+
+.br
+    return 1;
+.br
+}
+.br
+
+.br
+int main(void) {
+.br
+    char *input[4];
+.br
+    char *output[4];
+.br
+    char string[STRING_BUFFER_SIZE + 1];
+.br
+    int output_index = 0;
+.br
+    int string_length = 0;
+.br
+    int output_length = 4;
+.br
+    struct StringFilter new_filter = LIBFILTER_FILTER_INIT(&new_filter); 
+.br
+
+.br
+    memset(input, 0, sizeof(input));
+.br
+    memset(output, 0, sizeof(output));
+.br
+    memset(string, 0, sizeof(string));
+.br
+
+.br
+    // We want to filter these strings
+.br
+    input[0] = "foo";
+.br
+    input[1] = "bar";
+.br
+    input[2] = "baz";
+.br
+    input[3] = "tuna";
+.br
+
+.br
+    // Clone these into the output for initial printing
+.br
+    output[0] = "foo";
+.br
+    output[1] = "bar";
+.br
+    output[2] = "baz";
+.br
+    output[3] = "tuna";
+.br
+
+.br
+    // Setup the filter
+.br
+    LIBFILTER_FILTER_SET_INPUT(&new_filter, input, 4);
+.br
+    LIBFILTER_FILTER_SET_OUTPUT(&new_filter, output);
+.br
+    LIBFILTER_FILTER_SET_RULE(&new_filter, filter_string);
+.br
+
+.br
+    // Begin filtering until the output length is 1
+.br
+    while(output_length != 1) {
+.br
+        char next_character = 0;
+.br
+
+.br
+        // Display the valid options so far
+.br
+        for(output_index = 0; output_index < output_length; output_index++) {
+.br
+            printf("%i: %s", output_index + 1, output[output_index]); 
+.br
+        }
+.br
+
+.br
+        // Print a prompt with the current filter string as the typed one
+.br
+        printf(">>> %s", string); 
+.br
+
+.br
+        next_character = fgetc(stdin);
+.br
+        printf("\\n");
+.br
+
+.br
+        // Typed string must be able to fit in the buffer
+.br
+        if(string_length == STRING_BUFFER_SIZE)
+.br
+            continue;
+.br
+
+.br
+        // Backspace-- but make sure it does not index out of the bounds
+.br
+        // of the array backwards!
+.br
+        if(next_character == 0x08) {
+.br
+            if(string_length == 0)
+.br
+               continue;
+.br
+
+.br
+            string_length--; 
+.br
+            string[string_length] = '\\0';
+.br
+        } else if(next_character != '\\n') {
+.br
+            string[string_length] = next_character;    
+.br
+            string_length++;
+.br
+
+.br
+            string[string_length] = '\\0';
+.br
+        }
+.br
+
+.br
+        // Filter the strings
+.br
+        LIBFILTER_FILTER_MATCH(&new_filter, string, output_length);
+.br
+
+.br
+        // Clear the screen
+.br
+        printf("%s", "\\033[2J");
+.br
+    }
+.br
+
+.br
+    printf("You chose: '%s'", output[0]);
+.br
+
+.br
+    return EXIT_SUCCESS;
+.br
+}
+.br

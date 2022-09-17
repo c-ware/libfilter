@@ -1,0 +1,51 @@
+.TH "LIBFILTER_FILTER_SET_RULE" "cware" "September 17, 2022" "" "C-Ware Manuals"
+.br
+.SH NAME
+.br
+LIBFILTER_FILTER_SET_RULE - assign the rule to use when filtering
+.br
+.SH SYNOPSIS
+.br
+#include "libfilter/libfilter.h"
+.br
+
+.br
+\fB#define LIBFILTER_FILTER_SET_RULE(\fR\fIfilter\fR\fB,\fR \fIrule\fR\fB);\fR
+.br
+.SH DESCRIPTION
+.br
+This macro function will set the rule to use when filtering the contents of
+.br
+the input array. The rule must have a function signature matching the following,
+.br
+where \fIT\fR represents an arbitrary type that the user decides:
+.br
+
+.br
+\fBint filter(\fR\fIT object\fR\fB, const char *string);\fR
+.br
+
+.br
+The return value of the filter function should be 1 if the object passes
+.br
+the filter, and 0 if it does not.
+.br
+
+.br
+
+.br
+When the following conditions are met, this will produce  an error message to stderr, and abort the program.
+.br
+    - filter is NULL
+.br
+    - rule is NULL
+.br
+
+.br
+\fIfilter\fR will be a pointer to the filter to set the rule of
+.br
+\fIrule\fR will be the filter rule to use
+.br
+.SH SEE ALSO
+.br
+libfilter(cware)
